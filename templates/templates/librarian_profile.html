@@ -1,0 +1,63 @@
+{% if message %}
+<script>
+    alert('{{message}}');
+</script>
+{% endif %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile</title>
+        <style>
+            body{
+                text-align: center;
+            }
+        </style>
+        
+    </head>
+    <body>
+        {{name}}<br/>
+        {{email}}<br/><br/>
+        {% if book or newbook or respond %}
+        <h4>Roles -</h4>
+        {% if book %}
+        Can add Books<br>
+        {% endif %}
+        {% if newbook %}
+        Can register new Books<br>
+        {% endif %}
+        {% if respond %}
+        Can accept/reject Requests<br>
+        {% endif %}
+        {% else %}
+        No roles are assigned
+        {% endif %}<br>
+        <h4>Change Roles - </h4>
+        Can add Books
+        <form method="post" action="{% url 'rol1Y' %}">
+            {% csrf_token %}
+            <button type="submit" value="{{name}}" name="name">Yes</button>
+        </form>
+        <form method="post" action="{% url 'rol1N' %}">
+            {% csrf_token %}
+            <button type="submit" value="{{name}}" name="name">No</button>
+        </form><br>
+        Can register new Books
+        <form method="post" action="{% url 'rol2Y' %}">
+            {% csrf_token %}
+            <button type="submit" value="{{name}}" name="name">Yes</button>
+        </form>
+        <form method="post" action="{% url 'rol2N' %}">
+            {% csrf_token %}
+            <button type="submit" value="{{name}}" name="name">No</button>
+        </form><br>
+        Can accept/reject Requests
+        <form method="post" action="{% url 'rol3Y' %}">
+            {% csrf_token %}
+            <button type="submit" value="{{name}}" name="name">Yes</button>
+        </form>
+        <form method="post" action="{% url 'rol3N' %}">
+            {% csrf_token %}
+            <button type="submit" value="{{name}}" name="name">No</button>
+        </form><br>
+    </body>
+</html>

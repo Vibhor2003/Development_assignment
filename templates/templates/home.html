@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Libsearch</title>
+        <style>
+            body{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <button type="button" onclick="location.href='{% url 'log' %}'">User</button>
+        <button type="button" onclick="location.href='{% url 'librarian' %}'">Librarian</button>
+        <button type="button" onclick="location.href='{% url 'admin' %}'">Admin</button>
+    </body>
+</html>

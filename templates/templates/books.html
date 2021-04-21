@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search</title>
+        <style>
+            body{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="post" action="{% url 'books' %}">
+            {% csrf_token %}
+            <input type="search" name="searched" placeholder="search book">
+            <button type="submit">Search</button>
+        </form>
+        {% if searched %}
+        {% if books %}
+        <h1>You Searched for '{{searched}}'</h1><br/>
+        {% for book in books %}
+        <form method="post" action="{% url 'book_detail' %}">
+            {% csrf_token %}
+            <input type="submit" value="{{book}}" name="book">
+        </form>
+        {% endfor %}
+        {% else %}
+        <h1>No result found for {{searched}}</h1>
+        {% endif %}
+        {% else %}
+        <h1>Hey! You forgot to Search</h1>
+        {% endif %}
+    </body>
+</html>
