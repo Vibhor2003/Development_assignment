@@ -1,0 +1,51 @@
+{% if message %}
+<script>
+    alert('{{message}}');
+</script>
+{% endif %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Librarian Page</title>
+        <style>
+            body{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        Welcome {{session_id}}
+        <form method="post" action="{% url 'books' %}">
+            {% csrf_token %}
+            <input type="search" name="searched" placeholder="search book">
+            <button type="submit">Search</button>
+        </form><br>
+        {% if book or newbook or respond %}
+        {% if book %}
+        <form method="post" action="{% url 'addbook' %}">
+            {% csrf_token %}
+            Add more Books - <br/>
+            Book Name :
+            <input type="text" name="name">
+            Copies :
+            <input type="number" name="stock"><br/>
+            <button type="submit" value="{{session_id}}" name="session_id">Add Book</button>
+        </form><br>
+        {% endif %}
+        {% if newbook %}
+        <form method="post" action="{% url 'book_sign' %}">
+            {% csrf_token %}
+            <button type="submit" value="{{session_id}}" name="session_id">Register New Book </button>
+        </form><br>
+        {% endif %}
+        {% if respond %}
+        <form method="post" action="{% url 'reqs' %}">
+            {% csrf_token %}
+            <button type="submit" value="{{session_id}}" name="session_id">Requests </button>
+        </form>
+        {% endif %}
+        {% else %}
+        You do not have any roles
+        {% endif %}
+    </body>
+</html>

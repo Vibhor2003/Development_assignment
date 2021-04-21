@@ -1,0 +1,28 @@
+{% if message %}
+<script>
+    alert('{{message}}');
+</script>
+{% endif %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register book</title>
+        <style>
+            body{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="/newbook/" method="post">
+            {% csrf_token %}
+            Book Name :
+            <input type="text" name="name">
+            Author :
+            <input type="text" name="aname">
+            Publisher :
+            <input type="text" name="pname">
+            <button type="submit" value="{{session_id}}" name="session_id">Register</button>
+        </form>
+    </body>
+</html>

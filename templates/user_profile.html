@@ -1,0 +1,52 @@
+{% if message %}
+<script>
+    alert('{{message}}');
+</script>
+{% endif %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile</title>
+        <style>
+            body{
+                text-align: center;
+            }
+        </style>
+        
+    </head>
+    <body>
+        {{name}}<br/>
+        {{email}}<br/><br/>
+        {% if book1 %}
+        Books borrowed - <br/>
+        <ol>
+            <li>
+                {{book1}}(Due Date - {{book1_d}})
+            </li>
+            {% if book2 %}
+            <br>
+            <li>
+                {{book2}}(Due Date - {{book2_d}})
+            </li>
+            {% endif %}
+        </ol>
+        {% else %}
+        No books borrowed
+        {% endif %}<br/><br/>
+        {% if reques_book %}
+        Request pending - 
+        {{reques_book}}
+        {% else %}
+        No Request made
+        {% endif %}<br>
+        Status - {{status}}
+        <form method="post" action="{% url 'astatus' %}">
+            {% csrf_token %}
+            <button type="submit" value="{{name}}" name="name">Activate</button>
+        </form>
+        <form method="post" action="{% url 'istatus' %}">
+            {% csrf_token %}
+            <button type="submit" value="{{name}}" name="name">Inactivate</button>
+        </form>
+    </body>
+</html>
