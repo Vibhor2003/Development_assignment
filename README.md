@@ -39,9 +39,11 @@ I used Django which is a python based framework
 I used google firebase for storing data and used pyrebase(a simple python wrapper for firebase API)
 
 # Installation of Pyrebase
-
 pip install pyrebase
 
+more details about pyrebase can be found here - https://github.com/thisbejim/Pyrebase
+
 # Note
+It use firebase for storing data so, during adding new account it may reject to register because of name or password is short
 
 I didn,t try bonus tasks because I wanted to do all 4 assignments
